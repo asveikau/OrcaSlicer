@@ -57,4 +57,9 @@ then
     exit 0
 fi
 
+# openvdb from ports doesn't have static libs
+export OPENVDB_USE_STATIC_LIBS=0
+# Setting this variable to true (default) also sets the above
+export SLIC3R_STATIC=0
+
 export FOUND_GTK3_DEV=1
