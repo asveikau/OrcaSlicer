@@ -354,7 +354,7 @@ if(NOT Imath_FOUND)
 endif()
 find_package(TBB ${_quiet} ${_required} COMPONENTS tbb)
 find_package(ZLIB ${_quiet} ${_required})
-find_package(Boost ${_quiet} ${_required} COMPONENTS iostreams system )
+find_package(Boost ${_quiet} ${_required} COMPONENTS iostreams )
 
 # Use GetPrerequisites to see which libraries this OpenVDB lib has linked to
 # which we can query for optional deps. This basically runs ldd/otoll/objdump
@@ -456,7 +456,6 @@ endif()
 
 set(_OPENVDB_VISIBLE_DEPENDENCIES
   Boost::iostreams
-  Boost::system
   Imath::Imath
 )
 
