@@ -101,11 +101,22 @@ if [ ${OPTIND} -eq 1 ] ; then
     exit 1
 fi
 
+function available_mem_gb() {
+    free --gibi --total | grep 'Mem' | rev | cut --delimiter=" " --fields=1 | rev
+}
+
+function available_disk_kb() {
+    # NB: This is not much of a meaningful check, because some
+    # mount points may be nearly full and others, away from the
+    # build tree, may have enough space.
+    df --block-size=1K . | tail -1 | awk '{print $4}'
+}
+
 function check_available_memory_and_disk() {
-    FREE_MEM_GB=$(free --gibi --total | grep 'Mem' | rev | cut --delimiter=" " --fields=1 | rev)
+    FREE_MEM_GB=`available_mem_gb`
     MIN_MEM_GB=10
 
-    FREE_DISK_KB=$(df --block-size=1K . | tail -1 | awk '{print $4}')
+    FREE_DISK_KB=`available_disk_kb`
     MIN_DISK_KB=$((10 * 1024 * 1024))
 
     if [[ ${FREE_MEM_GB} -le ${MIN_MEM_GB} ]] ; then

@@ -1,0 +1,59 @@
+#!/bin/bash
+# these are the FreeBSD specific build functions
+
+function available_mem_gb() {
+    pages=$(sysctl vm.stats.vm.v_free_count | cut -d : -f 2)
+    pagesize=$(sysctl vm.stats.vm.v_page_size | cut -d : -f 2)
+    echo $(($pages * $pagesize / 1024 / 1024))
+}
+
+function available_disk_kb() {
+    df -c | tail -1 | awk '{print $2}'
+}
+
+# Additional Dev packages for OrcaSlicer
+export REQUIRED_DEV_PACKAGES=(
+    boost-libs
+    cereal
+    cgal
+    cmake
+    curl
+    dbus
+    eglexternalplatform
+    gettext
+    gettext-tools
+    git
+    glew
+    gstreamer1
+    gstreamermm
+    gtk3
+    hidapi
+    libbgcode
+    libmspack
+    libsecret
+    libspnav
+    mesa-libs
+    ninja
+    opencascade
+    opencv
+    openssl
+    openvdb
+    texinfo
+    wayland-protocols
+    webkit2-gtk_41
+    wget
+    Imath
+    c-blosc
+)
+
+if [[ -n "$UPDATE_LIB" ]]
+then
+    echo -n -e "Updating packages ...\n"
+
+    pkg install -y ${REQUIRED_DEV_PACKAGES[@]}
+
+    echo -e "done\n"
+    exit 0
+fi
+
+export FOUND_GTK3_DEV=1
