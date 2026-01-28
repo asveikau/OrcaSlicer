@@ -30,6 +30,7 @@ export REQUIRED_DEV_PACKAGES=(
     hidapi
     libbgcode
     libmspack
+    libnoise
     libsecret
     libspnav
     mesa-libs
