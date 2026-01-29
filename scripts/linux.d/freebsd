@@ -57,6 +57,8 @@ then
     exit 0
 fi
 
+export OpenCV_INCLUDE_DIRS=/usr/local/include/opencv4
+
 # openvdb from ports doesn't have static libs
 export OPENVDB_USE_STATIC_LIBS=0
 # Setting this variable to true (default) also sets the above
