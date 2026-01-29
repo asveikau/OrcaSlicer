@@ -17,6 +17,10 @@
 #define LOCALHOST_PORT      13618
 #define LOCALHOST_URL       "http://localhost:"
 
+namespace boost { namespace asio {
+    using io_service = io_context;
+} }
+
 namespace Slic3r { namespace GUI {
 
 class session;

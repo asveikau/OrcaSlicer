@@ -6,6 +6,9 @@
 #include <boost/system/error_code.hpp>
 #include <boost/asio.hpp>
 
+namespace boost { namespace asio {
+    using io_service = io_context;
+} }
 
 namespace Slic3r {
 namespace Utils {
