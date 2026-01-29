@@ -22,7 +22,9 @@
 #include <pwd.h>
 #include <boost/filesystem.hpp>
 #include <boost/system/error_code.hpp>
-#include <boost/process.hpp>
+#include <boost/process/v1.hpp>
+
+namespace boost { namespace process { using namespace boost::process::v1; } }
 #endif
 
 namespace Slic3r {

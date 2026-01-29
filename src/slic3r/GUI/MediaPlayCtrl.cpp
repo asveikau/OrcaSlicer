@@ -13,7 +13,7 @@
 #include <boost/nowide/cstdio.hpp>
 #include <boost/nowide/utf8_codecvt.hpp>
 #undef pid_t
-#include <boost/process.hpp>
+#include <boost/process/v1.hpp>
 #ifdef __WIN32__
 #include <boost/process/windows.hpp>
 #else
@@ -32,6 +32,8 @@ static std::map<int, std::string> error_messages = {
     {102, L("The player is not loaded, please click \"play\" button to retry.")},
     {103, L("The player is not loaded, please click \"play\" button to retry.")}
 };
+
+namespace boost { namespace process { using namespace boost::process::v1; } }
 
 namespace Slic3r {
 namespace GUI {
