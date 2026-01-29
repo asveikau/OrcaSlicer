@@ -1663,7 +1663,7 @@ wxBoxSizer* MainFrame::create_side_tools()
         m_filament_group_popup->tryPopup(m_plater, curr_plate, m_slice_select == eSliceAll);
         };
 
-#ifndef __linux__
+#if !defined(__linux__) && !defined(__FreeBSD__)
 // in linux plateform, the pop up will taker over the mouse event and make the slice button cannot handle click event
     // this pannel is used to trigger hover when button is disabled
     slice_panel->Bind(wxEVT_ENTER_WINDOW, [this,try_hover_pop_up](auto& event) {
@@ -1695,7 +1695,7 @@ wxBoxSizer* MainFrame::create_side_tools()
             bool slice = true;
 
             auto curr_plate = m_plater->get_partplate_list().get_curr_plate();
-            #ifdef __linux__
+            #if defined(__linux__) || defined(__FreeBSD__)
                 slice = try_pop_up_before_slice(m_slice_select == eSliceAll, m_plater, curr_plate, true);
             #else
                 slice = try_pop_up_before_slice(m_slice_select == eSliceAll, m_plater, curr_plate, false);

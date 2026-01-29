@@ -11,7 +11,7 @@
 
 #include <boost/filesystem.hpp>
 
-#if __linux__
+#if __linux__ || __FreeBSD__
 #include <boost/thread.hpp>
 #include <mutex>
 #include <condition_variable>
@@ -38,7 +38,7 @@ namespace GUI {
 
 class MainFrame;
 
-#if __linux__
+#if __linux__ || __FreeBSD__
     #define BACKGROUND_MESSAGE_LISTENER
 #endif // __linux__
 

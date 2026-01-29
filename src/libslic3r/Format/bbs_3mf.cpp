@@ -7528,7 +7528,7 @@ void PlateData::parse_filament_info(GCodeProcessorResult *result)
     }
 
     boost::filesystem::path get_dealed_platform_path(std::string path_str) {
-#if defined(__linux__) || defined(__LINUX__) || defined(__APPLE__)
+#if defined(__linux__) || defined(__LINUX__) || defined(__APPLE__) || defined(__FreeBSD__)
         std::string translated_input = path_str;
         std::replace(translated_input.begin(), translated_input.end(), '\\', '/');
 

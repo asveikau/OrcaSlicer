@@ -146,7 +146,7 @@ GCodeSender::set_baud_rate(unsigned int baud_rate)
         if (ioctl(handle, TCSETS2, &ios))
             printf("Error in TCSETS2: %s\n", strerror(errno));
 		
-#elif __OpenBSD__
+#elif __FreeBSD__ || __OpenBSD__
 		struct termios ios;
 		::tcgetattr(handle, &ios);
 		::cfsetspeed(&ios, baud_rate);
