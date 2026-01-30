@@ -734,6 +734,19 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
         ${WAYLAND_CLIENT_LIBRARIES}
         ${CURL_LIBRARIES}
     )
+elseif (CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
+    find_package(DBus REQUIRED)
+    find_package(CURL REQUIRED)
+    find_package(X11 REQUIRED)
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(webkit2gtk REQUIRED webkit2gtk-4.1)
+    target_link_libraries(libslic3r_gui
+        ${DBUS_LIBRARIES}
+        ${CURL_LIBRARIES}
+        ${X11_LIBRARIES}
+        ${webkit2gtk_LIBRARIES}
+        usb
+    )
 elseif (APPLE)
     if(CMAKE_VERSION VERSION_GREATER_EQUAL "4.0")
         target_link_libraries(libslic3r_gui ${DISKARBITRATION_LIBRARY} "-framework Security" "-framework OpenGL")
